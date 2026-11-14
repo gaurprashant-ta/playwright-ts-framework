@@ -1,7 +1,6 @@
 import { test, expect, type Locator } from '@playwright/test';
-import { url } from 'node:inspector';
 
-test('Launch App and Enter Username', async ({ page }) => {
+test('standard user can log in', async ({ page }) => {
   await page.goto('https://www.saucedemo.com');
 
   // Verify the page title
@@ -14,7 +13,9 @@ test('Launch App and Enter Username', async ({ page }) => {
   await expect(usernameInput).toHaveValue('standard_user');
 
   await page.getByPlaceholder('password').fill("secret_sauce");
- await page.getByRole('button', { name: 'Login' }).click();
- await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+  await page.getByRole('button', { name: 'Login' }).click();
+  //Assertions
+  await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+  await expect(page.getByText('Products')).toBeVisible();
 
 });
