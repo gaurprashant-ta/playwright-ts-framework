@@ -14,6 +14,7 @@ test('standard user can log in', async ({ page }) => {
 
   await page.getByPlaceholder('password').fill("secret_sauce");
   await page.getByRole('button', { name: 'Login' }).click();
+  
   //Assertions
   await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
   await expect(page.getByText('Products')).toBeVisible();
