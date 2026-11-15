@@ -1,10 +1,10 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
+import { test, expect } from '../fixtures/fixtures'
+// import { LoginPage } from '../pages/LoginPage';
 
-test('standard user can log in', async ({ page }) => {
+test('standard user can log in', async ({loginPage, page }) => {
 
-  const loginPage = new LoginPage(page);
-  await loginPage.goto();
+  // const loginPage = new LoginPage(page);
+  await loginPage.navigateToURL();
   await loginPage.login('standard_user', 'secret_sauce');
 
   //Assertions

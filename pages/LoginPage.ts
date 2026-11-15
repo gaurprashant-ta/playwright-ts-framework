@@ -13,7 +13,7 @@ export class LoginPage {
     this.loginButton = page.getByRole('button', { name: 'Login' });
   }
 
-  async goto() {
+  async navigateToURL() {
     await this.page.goto('/');  
   }
 
