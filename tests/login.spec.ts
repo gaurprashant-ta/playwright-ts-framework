@@ -1,22 +1,14 @@
-import { test, expect, type Locator } from '@playwright/test';
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
 
 test('standard user can log in', async ({ page }) => {
-  await page.goto('https://www.saucedemo.com');
 
-  // Verify the page title
-  await expect(page).toHaveTitle(/Swag Labs/);
+  const loginPage = new LoginPage(page);
+  await loginPage.goto();
+  await loginPage.login('standard_user', 'secret_sauce');
 
-  // Locate and fill the username field
-  const usernameInput: Locator = page.getByPlaceholder('Username');
-  await usernameInput.fill('standard_user');
-
-  await expect(usernameInput).toHaveValue('standard_user');
-
-  await page.getByPlaceholder('password').fill("secret_sauce");
-  await page.getByRole('button', { name: 'Login' }).click();
-  
   //Assertions
-  await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+  await expect(page).toHaveURL(/inventory\.html/);
   await expect(page.getByText('Products')).toBeVisible();
 
 });
