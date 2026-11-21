@@ -5,12 +5,14 @@ export class LoginPage {
   readonly usernameInput: Locator;
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
+  readonly errorDescription :Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.usernameInput = page.getByPlaceholder('Username');
     this.passwordInput = page.getByPlaceholder('password');
     this.loginButton = page.getByRole('button', { name: 'Login' });
+    this.errorDescription = page.getByTestId('error');
   }
 
   async navigateToURL() {

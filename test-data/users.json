@@ -1,0 +1,68 @@
+[
+  {
+    "testId": "TC-01",
+    "description": "Standard user logs in successfully",
+    "tags": ["@smoke", "@positive"],
+    "credentials": {
+      "username": "standard_user",
+      "password": "secret_sauce"
+    },
+    "expected": {
+      "isSuccess": true,
+      "url": "/inventory.html",
+      "headerText": "Products"
+    }
+  },
+  {
+    "testId": "TC-02",
+    "description": "Locked out user receives lock error message",
+    "tags": ["@negative"],
+    "credentials": {
+      "username": "locked_out_user",
+      "password": "secret_sauce"
+    },
+    "expected": {
+      "isSuccess": false,
+      "errorMessage": "Epic sadface: Sorry, this user has been locked out."
+    }
+  },
+  {
+    "testId": "TC-03",
+    "description": "Invalid password shows credential mismatch error",
+    "tags": ["@negative"],
+    "credentials": {
+      "username": "standard_user",
+      "password": "wrong_password"
+    },
+    "expected": {
+      "isSuccess": false,
+      "errorMessage": "Epic sadface: Username and password do not match any user in this service"
+    }
+  },
+  {
+    "testId": "TC-04",
+    "description": "Empty username triggers required field error",
+    "tags": ["@validation"],
+    "credentials": {
+      "username": "",
+      "password": "secret_sauce"
+    },
+    "expected": {
+      "isSuccess": false,
+      "errorMessage": "Epic sadface: Username is required"
+    }
+  },
+  {
+    "testId": "TC-05",
+    "description": "Empty password triggers required field error",
+    "tags": ["@validation"],
+    "credentials": {
+      "username": "standard_user",
+      "password": ""
+    },
+    "expected": {
+      "isSuccess": false,
+      "errorMessage": "Epic sadface: Password is required"
+    }
+  }
+]
