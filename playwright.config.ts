@@ -35,10 +35,21 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'], headless: !!process.env.CI },
+
+     // NEW: runs first
+  { name: 'setup', testMatch: /.*\.setup\.ts/ },
+
+  {
+    name: 'chromium',
+    use: {
+      ...devices['Desktop Chrome'],
+      headless: !!process.env.CI,
+      storageState: 'playwright/.auth/user.json',   // NEW
     },
+    dependencies: ['setup'],                         // NEW (outside `use`!)
+  },
+
+  // firefox, webkit: the same two additions
 
     // {
     //   name: 'firefox',
