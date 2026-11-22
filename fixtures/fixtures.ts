@@ -14,9 +14,10 @@ export const test = base.extend<MyFixtures>({
     await use (loginPage);
  },
  inventoryPage: async ({loginPage, page }, use) => {
-    await loginPage.navigateToURL();
-    await loginPage.login('standard_user', 'secret_sauce');
+    
+   //  await loginPage.login('standard_user', 'secret_sauce');
     const inventoryPage = new InventoryPage(page) 
+    await inventoryPage.navigateToURL();
     await use (inventoryPage);
  },
  cartPage: async ({inventoryPage, page }, use) => {

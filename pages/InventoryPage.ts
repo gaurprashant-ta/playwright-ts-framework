@@ -19,6 +19,9 @@ export class InventoryPage {
 
 
     }
+    async navigateToURL() {
+      await this.page.goto('/inventory.html');
+}
 
     async addToCart(productName: string){
         await this.inventoryItem.filter({hasText : productName}).getByRole("button" ,{name :'Add to cart'}).click();
